@@ -21,10 +21,14 @@ class WebCrawler(object):
             elif re.match('<!--.*-->', str(element.encode('utf-8'))):
                 return False
             elif re.match('\s', str(element.encode('utf-8'))):
-                return True
+                return False
             return True
 
+
         text = [element for element in data if visible(element)]
+        text = [element.lstrip().rstrip() for element in text]
+        text = [element for element in text if (len(element) > 0)]
+
         frequencies = {}
         for item in text:
             if item not in frequencies:
