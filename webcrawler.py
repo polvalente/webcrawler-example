@@ -27,5 +27,8 @@ class WebCrawler(object):
             if item not in frequencies:
                 frequencies[item] = 0
             frequencies[item] += 1
-        
-        return frequencies
+
+        sorted_freqs = sorted(list(frequencies.items()), key=lambda x: x[1])
+        words, frequencies = zip(*sorted_freqs)
+
+        return words, frequencies
